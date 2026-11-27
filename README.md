@@ -1,23 +1,83 @@
 # Real Landlords for Students
 
-SE 202 Mobile Programming, midterm project. Team JSE1 girls.
+A student-focused Flutter app to help people in Tashkent find rooms and make
+more informed decisions about who they rent from.
 
-Students in Tashkent cannot tell real landlords from brokers, so they lose time and money. Our planned Flutter app shows rooms with a trust badge computed from the landlord's number of active postings, plus feedback from other students, a map and a distance filter.
+## Project status
 
-No working app is required at the midterm. This repository holds the problem and solution document, the slides and the wireframes. The app is built after the midterm.
+The app is in early development. The current Flutter app is a welcome-screen
+scaffold with Riverpod, named `go_router` navigation, and a shared Material
+theme. Search, listing, landlord, and listing-management features are planned;
+check the GitHub Issues for the current scoped work.
 
-## Files
+## Final-project targets
 
-- `Midterm_JSE1_girls.pdf`: problem and solution document (evidence, concept, data model, user flow, screens, Flutter plan, out of scope, who did what)
-- `Midterm_JSE1_girls_slides.pdf`: presentation slides (added after export)
-- `screenshots/`: the 7 wireframes exported from Figma (Welcome, Search, Listing details, Landlord profile, Post a room, My rooms, Landlord account)
+The course grading criteria guide the project scope:
 
-## Team
+- At least 35 distinct screens, reachable through app navigation, with a named
+  route that passes an argument.
+- A validated form and a REST API with loading, retryable error, and empty
+  states.
+- An AI model integrated into the app and persistent user data that survives
+  restart.
+- At least 10 passing unit/widget tests, clean `flutter analyze`, and useful
+  `README.md` files in project directories.
+- Every member makes meaningful Flutter commits in Weeks 11-14 and can demo and
+  explain their own code.
 
-- Ruxsoraxon Kenjayeva (team lead)
-- Durdona Valiqulova
-- Sevinchoy Urazmatova
-- Gulhayo Xayitova
-- Shahzoda Anvarova
+These are project targets, not a claim that all features are implemented yet.
 
-Figma: https://www.figma.com/design/zDwGP1uR8OHHKpCiv3dYuY/Apartment-hunting?node-id=10-1008
+## Getting started
+
+Install a Flutter SDK compatible with the Dart constraint in `pubspec.yaml`, and
+start an emulator or connect a device:
+
+```sh
+flutter pub get
+flutter run
+```
+
+Run the checks before submitting a change:
+
+```sh
+flutter analyze
+flutter test
+```
+
+To regenerate platform app icons after changing the master artwork in
+`assets/`, run:
+
+```sh
+dart run flutter_launcher_icons
+```
+
+## Tech stack
+
+- Flutter and Dart
+- Riverpod for app state
+- `go_router` for navigation
+
+## Team contributions
+
+| Member | Role | Flutter screens/features implemented |
+| --- | --- | --- |
+| Ruxsoraxon Kenjayeva | Team lead; Flutter feature contributor | App shell, welcome screen, routing, and shared theme |
+| Durdona Valiqulova | Flutter feature contributor | No Flutter feature merged yet |
+| Sevinchoy Urazmatova | Flutter feature contributor | No Flutter feature merged yet |
+| Gulhayo Xayitova | Flutter feature contributor | No Flutter feature merged yet |
+| Shahzoda Anvarova | Flutter feature contributor | No Flutter feature merged yet |
+
+Keep this table current as features are merged. Enter member IDSS values in the
+course submission sheet, not in this repository.
+
+## Design resources
+
+- [Midterm project document](Midterm_JSE1_girls.pdf)
+- [Midterm presentation slides](Midterm_JSE1_girls_slides.pdf)
+- [Figma wireframes](https://www.figma.com/design/zDwGP1uR8OHHKpCiv3dYuY/Apartment-hunting?node-id=10-1008)
+- [Wireframe exports](screenshots/)
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the project workflow, issue and PR
+formats, and implementation expectations.
