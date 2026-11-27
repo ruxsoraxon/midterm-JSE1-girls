@@ -1,23 +1,47 @@
 # Real Landlords for Students
 
-SE 202 Mobile Programming, midterm project. Team JSE1 girls.
+A Flutter app to help students in Tashkent find rooms, distinguish landlords
+from brokers, and make more informed rental decisions.
 
-Students in Tashkent cannot tell real landlords from brokers, so they lose time and money. Our planned Flutter app shows rooms with a trust badge computed from the landlord's number of active postings, plus feedback from other students, a map and a distance filter.
+## Run locally
 
-No working app is required at the midterm. This repository holds the problem and solution document, the slides and the wireframes. The app is built after the midterm.
+Install Flutter 3.x, then run:
 
-## Files
+```sh
+flutter pub get
+flutter run
+```
 
-- `Midterm_JSE1_girls.pdf`: problem and solution document (evidence, concept, data model, user flow, screens, Flutter plan, out of scope, who did what)
-- `Midterm_JSE1_girls_slides.pdf`: presentation slides (added after export)
-- `screenshots/`: the 7 wireframes exported from Figma (Welcome, Search, Listing details, Landlord profile, Post a room, My rooms, Landlord account)
+Run the checks before opening a pull request:
+
+```sh
+flutter analyze
+flutter test
+```
+
+The app currently has a shared Material theme, a Riverpod app root, named
+`go_router` navigation, and a welcome screen. Feature-specific packages (such as
+networking, persistence, and maps) should be added with the feature that needs
+them. Keep API credentials on the server; do not commit secrets or put them in
+the Flutter app.
 
 ## Team
 
-- Ruxsoraxon Kenjayeva (team lead)
-- Durdona Valiqulova
-- Sevinchoy Urazmatova
-- Gulhayo Xayitova
-- Shahzoda Anvarova
+| Member | Role / feature ownership | Implemented screens or features |
+| --- | --- | --- |
+| Ruxsoraxon Kenjayeva | Team lead; feature ownership to be agreed | App scaffold |
+| Durdona Valiqulova | To be agreed | To be implemented |
+| Sevinchoy Urazmatova | To be agreed | To be implemented |
+| Gulhayo Xayitova | To be agreed | To be implemented |
+| Shahzoda Anvarova | To be agreed | To be implemented |
 
-Figma: https://www.figma.com/design/zDwGP1uR8OHHKpCiv3dYuY/Apartment-hunting?node-id=10-1008
+Feature ownership is planned around vertical slices (UI, state/logic, data
+access, and tests), not equal screen counts.
+
+## Project material
+
+- [Final project plan](FINAL_PROJECT_PLAN.md): proposed scope, route inventory,
+  architecture, and grading checklist.
+- [Midterm project document](Midterm_JSE1_girls.pdf): original problem,
+  evidence, concept, and initial design.
+- [Figma wireframes](https://www.figma.com/design/zDwGP1uR8OHHKpCiv3dYuY/Apartment-hunting?node-id=10-1008)
