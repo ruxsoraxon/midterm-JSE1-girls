@@ -1,3 +1,26 @@
+enum LandlordTrustBadge {
+
+  likelyOwner('Likely owner'),
+
+  checkCarefully('Check carefully'),
+
+  likelyBroker('Likely broker');
+
+  final String label;
+
+  const LandlordTrustBadge(this.label);
+
+  static LandlordTrustBadge fromPostingCount(int activePostingCount) {
+    if (activePostingCount <= 3) {
+      return LandlordTrustBadge.likelyOwner;
+    }
+    if (activePostingCount <= 19) {
+      return LandlordTrustBadge.checkCarefully;
+    }
+    return LandlordTrustBadge.likelyBroker;
+  }
+}
+
 class Landlord {
   final String id;
   final String name;
@@ -21,7 +44,6 @@ class Landlord {
     this.avatarUrl,
   });
 
-  // Creates a [Landlord] from a map/JSON object
   factory Landlord.fromMap(Map<String, dynamic> map) {
     return Landlord(
       id: map['id'] as String,
@@ -38,7 +60,6 @@ class Landlord {
     );
   }
 
-  // Converts this [Landlord] into a map/JSON object
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -53,7 +74,6 @@ class Landlord {
     };
   }
 
-  // Returns a copy of this [Landlord] with any provided fields replaced
   Landlord copyWith({
     String? id,
     String? name,

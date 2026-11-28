@@ -42,6 +42,7 @@ class ListingRepository {
     String? district,
     int? maxMonthlyRentUsd,
     bool onlyAvailable = false,
+    ListingAudience? forWhom,
   }) {
     final normalizedQuery = query?.trim().toLowerCase() ?? '';
     final normalizedDistrict = district?.trim().toLowerCase() ?? '';
@@ -59,6 +60,11 @@ class ListingRepository {
           listing.monthlyRentUsd > maxMonthlyRentUsd) {
         return false;
       }
+      if (forWhom != null &&
+          forWhom != ListingAudience.studentsWelcome &&
+          listing.forWhom != forWhom) {
+        return false;
+}
       if (normalizedQuery.isNotEmpty) {
         final matchesTitle =
             listing.title.toLowerCase().contains(normalizedQuery);
@@ -81,6 +87,13 @@ class ListingRepository {
       }
       return true;
     }).toList(growable: false);
+  }
+
+  LandlordTrustBadge getBadgeForLandlord(String landlordId) {
+    final activeCount = _listings
+        .where((listing) => listing.landlordId == landlordId && listing.isAvailable)
+        .length;
+    return LandlordTrustBadge.fromPostingCount(activeCount);
   }
 
   static final List<Landlord> sampleLandlords = [
@@ -132,7 +145,9 @@ class ListingRepository {
       photoUrls: ['assets/app_icon.png'],
       isAvailable: true,
       createdAt: DateTime(2026, 10, 5),
-      distanceKm: 1.8,
+      latitude: 41.3412, 
+      longitude: 69.3361, 
+      forWhom: ListingAudience.studentsWelcome,
     ),
     Listing(
       id: 'listing_2',
@@ -149,7 +164,9 @@ class ListingRepository {
       photoUrls: ['assets/app_icon.png'],
       isAvailable: true,
       createdAt: DateTime(2026, 10, 12),
-      distanceKm: 0.9,
+      latitude: 41.3450, 
+      longitude: 69.3420, 
+      forWhom: ListingAudience.girls,
     ),
     Listing(
       id: 'listing_3',
@@ -166,7 +183,9 @@ class ListingRepository {
       photoUrls: ['assets/app_icon.png'],
       isAvailable: true,
       createdAt: DateTime(2026, 10, 18),
-      distanceKm: 4.5,
+      latitude: 41.2856, 
+      longitude: 69.2034, 
+      forWhom: ListingAudience.boys,
     ),
     Listing(
       id: 'listing_4',
@@ -183,7 +202,9 @@ class ListingRepository {
       photoUrls: ['assets/app_icon.png'],
       isAvailable: false,
       createdAt: DateTime(2026, 10, 24),
-      distanceKm: 5.2,
+      latitude: 41.3385, 
+      longitude: 69.2845, 
+      forWhom: ListingAudience.studentsWelcome,
     ),
   ];
 }

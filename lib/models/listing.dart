@@ -1,5 +1,30 @@
 import 'package:flutter/foundation.dart';
 
+enum ListingAudience {
+  studentsWelcome('Students welcome'),
+
+  girls('Girls'),
+
+  boys('Boys');
+
+  final String label;
+
+  const ListingAudience(this.label);
+
+  static ListingAudience fromString(String? value) {
+    switch (value?.trim().toLowerCase()) {
+      case 'girls':
+        return ListingAudience.girls;
+      case 'boys':
+        return ListingAudience.boys;
+      case 'students welcome':
+      case 'studentswelcome':
+      default:
+        return ListingAudience.studentsWelcome;
+    }
+  }
+}
+
 class Listing {
   final String id;
   final String landlordId;
@@ -14,9 +39,10 @@ class Listing {
   final List<String> photoUrls;
   final bool isAvailable;
   final DateTime createdAt;
-  final double? distanceKm; // optional
+  final double latitude;
+  final double longitude;
+  final ListingAudience forWhom;
 
-  // Creates a [Listing] instance
   const Listing({
     required this.id,
     required this.landlordId,
@@ -31,10 +57,11 @@ class Listing {
     required this.photoUrls,
     required this.isAvailable,
     required this.createdAt,
-    this.distanceKm,
+    required this.latitude,
+    required this.longitude,
+    this.forWhom = ListingAudience.studentsWelcome,  
   });
 
-  // Creates a [Listing] from a map/JSON object
   factory Listing.fromMap(Map<String, dynamic> map) {
     return Listing(
       id: map['id'] as String,
@@ -52,11 +79,12 @@ class Listing {
       createdAt: map['createdAt'] is DateTime
           ? map['createdAt'] as DateTime
           : DateTime.parse(map['createdAt'] as String),
-      distanceKm: (map['distanceKm'] as num?)?.toDouble(),
+      latitude: (map['latitude'] as num).toDouble(),
+      longitude: (map['longitude'] as num).toDouble(),
+      forWhom: ListingAudience.fromString(map['forWhom'] as String?),
     );
   }
 
-  // Converts this [Listing] into a map/JSON object
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -72,11 +100,12 @@ class Listing {
       'photoUrls': photoUrls,
       'isAvailable': isAvailable,
       'createdAt': createdAt.toIso8601String(),
-      'distanceKm': distanceKm,
+      'latitude': latitude,
+      'longitude': longitude,
+      'forWhom': forWhom.label, 
     };
   }
 
-  // Returns a copy of this [Listing] with any provided fields replaced
   Listing copyWith({
     String? id,
     String? landlordId,
@@ -91,7 +120,9 @@ class Listing {
     List<String>? photoUrls,
     bool? isAvailable,
     DateTime? createdAt,
-    double? distanceKm,
+    double? latitude,
+    double? longitude,
+    ListingAudience? forWhom,
   }) {
     return Listing(
       id: id ?? this.id,
@@ -107,7 +138,9 @@ class Listing {
       photoUrls: photoUrls ?? this.photoUrls,
       isAvailable: isAvailable ?? this.isAvailable,
       createdAt: createdAt ?? this.createdAt,
-      distanceKm: distanceKm ?? this.distanceKm,
+      latitude: latitude ?? this.latitude,
+      longitude: longitude ?? this.longitude,
+      forWhom: forWhom ?? this.forWhom,
     );
   }
 
@@ -128,7 +161,9 @@ class Listing {
         listEquals(other.photoUrls, photoUrls) &&
         other.isAvailable == isAvailable &&
         other.createdAt == createdAt &&
-        other.distanceKm == distanceKm;
+        other.latitude == latitude &&
+        other.longitude == longitude &&
+        other.forWhom == forWhom;
   }
 
   @override
@@ -146,6 +181,8 @@ class Listing {
         Object.hashAll(photoUrls),
         isAvailable,
         createdAt,
-        distanceKm,
+        latitude,
+        longitude,
+        forWhom,
       );
 }
