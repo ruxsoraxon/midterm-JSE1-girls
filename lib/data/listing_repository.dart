@@ -40,7 +40,7 @@ class ListingRepository {
   List<Listing> searchListings({
     String? query,
     String? district,
-    int? maxMonthlyRentUsd,
+    int? maxMonthlyRentUzs,
     bool onlyAvailable = false,
     ListingAudience? forWhom,
   }) {
@@ -56,8 +56,8 @@ class ListingRepository {
           listing.district.toLowerCase() != normalizedDistrict) {
         return false;
       }
-      if (maxMonthlyRentUsd != null &&
-          listing.monthlyRentUsd > maxMonthlyRentUsd) {
+      if (maxMonthlyRentUzs != null &&
+          listing.monthlyRentUzs > maxMonthlyRentUzs) {
         return false;
       }
       if (forWhom != null &&
@@ -138,7 +138,7 @@ class ListingRepository {
           'Clean 2-room apartment with study desks, high-speed internet, and easy public transit access for students.',
       district: 'Mirzo-Ulugbek',
       address: 'Buyuk Ipak Yuli street, block 42',
-      monthlyRentUsd: 380,
+      monthlyRentUzs: 4560000,
       roomCount: 2,
       propertyType: 'Apartment',
       amenities: ['Wi-Fi', 'Washing Machine', 'Air Conditioning', 'Study Desk'],
@@ -157,7 +157,7 @@ class ListingRepository {
           'Furnished private room with shared kitchen and bathroom. Quiet building suitable for exam prep.',
       district: 'New Tashkent',
       address: 'Mahtumquli corridor area, building 12',
-      monthlyRentUsd: 210,
+      monthlyRentUzs: 2500000,
       roomCount: 1,
       propertyType: 'Private Room',
       amenities: ['Wi-Fi', 'Washing Machine', 'Heating'],
@@ -176,7 +176,7 @@ class ListingRepository {
           'Compact 1-room apartment close to grocery stores, cafes, and metro line with clear utility rules.',
       district: 'Chilonzor',
       address: 'Bunyodkor avenue, 8th kvartal',
-      monthlyRentUsd: 320,
+      monthlyRentUzs: 3800000,
       roomCount: 1,
       propertyType: 'Apartment',
       amenities: ['Wi-Fi', 'Refrigerator', 'Washing Machine', 'Air Conditioning'],
@@ -195,7 +195,7 @@ class ListingRepository {
           'Spacious 3-room flat well-suited for three students sharing rent and bills.',
       district: 'Yunusobod',
       address: 'Amir Temur street, block 19',
-      monthlyRentUsd: 460,
+      monthlyRentUzs: 4780000,
       roomCount: 3,
       propertyType: 'Shared Room',
       amenities: ['Wi-Fi', 'Washing Machine', 'Balcony'],

@@ -32,7 +32,7 @@ class Listing {
   final String description;
   final String district;
   final String address;
-  final int monthlyRentUsd;
+  final int monthlyRentUzs;
   final int roomCount;
   final String propertyType;
   final List<String> amenities;
@@ -50,7 +50,7 @@ class Listing {
     required this.description,
     required this.district,
     required this.address,
-    required this.monthlyRentUsd,
+    required this.monthlyRentUzs,
     required this.roomCount,
     required this.propertyType,
     required this.amenities,
@@ -70,7 +70,7 @@ class Listing {
       description: map['description'] as String? ?? '',
       district: map['district'] as String,
       address: map['address'] as String? ?? '',
-      monthlyRentUsd: (map['monthlyRentUsd'] as num).toInt(),
+      monthlyRentUzs: (map['monthlyRentUzs'] as num).toInt(),
       roomCount: (map['roomCount'] as num).toInt(),
       propertyType: map['propertyType'] as String? ?? 'Apartment',
       amenities: List<String>.from(map['amenities'] as List? ?? const []),
@@ -93,7 +93,7 @@ class Listing {
       'description': description,
       'district': district,
       'address': address,
-      'monthlyRentUsd': monthlyRentUsd,
+      'monthlyRentUzs': monthlyRentUzs,
       'roomCount': roomCount,
       'propertyType': propertyType,
       'amenities': amenities,
@@ -113,7 +113,7 @@ class Listing {
     String? description,
     String? district,
     String? address,
-    int? monthlyRentUsd,
+    int? monthlyRentUzs,
     int? roomCount,
     String? propertyType,
     List<String>? amenities,
@@ -131,7 +131,7 @@ class Listing {
       description: description ?? this.description,
       district: district ?? this.district,
       address: address ?? this.address,
-      monthlyRentUsd: monthlyRentUsd ?? this.monthlyRentUsd,
+      monthlyRentUzs: monthlyRentUzs ?? this.monthlyRentUzs,
       roomCount: roomCount ?? this.roomCount,
       propertyType: propertyType ?? this.propertyType,
       amenities: amenities ?? this.amenities,
@@ -154,7 +154,7 @@ class Listing {
         other.description == description &&
         other.district == district &&
         other.address == address &&
-        other.monthlyRentUsd == monthlyRentUsd &&
+        other.monthlyRentUzs == monthlyRentUzs &&
         other.roomCount == roomCount &&
         other.propertyType == propertyType &&
         listEquals(other.amenities, amenities) &&
@@ -174,7 +174,7 @@ class Listing {
         description,
         district,
         address,
-        monthlyRentUsd,
+        monthlyRentUzs,
         roomCount,
         propertyType,
         Object.hashAll(amenities),

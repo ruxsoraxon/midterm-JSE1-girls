@@ -67,7 +67,7 @@ void main() {
         description: 'Quiet room with fast internet.',
         district: 'Mirzo-Ulugbek',
         address: 'Sample Street 10',
-        monthlyRentUsd: 250,
+        monthlyRentUzs: 2500000,
         roomCount: 1,
         propertyType: 'Private Room',
         amenities: ['Wi-Fi', 'Heating'],
@@ -83,8 +83,8 @@ void main() {
       expect(roundTrip, equals(listing));
       expect(roundTrip.hashCode, equals(listing.hashCode));
 
-      final updated = listing.copyWith(monthlyRentUsd: 240, isAvailable: false);
-      expect(updated.monthlyRentUsd, 240);
+      final updated = listing.copyWith(monthlyRentUzs: 2400000, isAvailable: false);
+      expect(updated.monthlyRentUzs, 2400000);
       expect(updated.isAvailable, isFalse);
       expect(updated.title, listing.title);
       expect(updated, isNot(equals(listing)));
@@ -129,13 +129,13 @@ void main() {
       expect(landlordListings.length, 2);
 
       final affordableAvailable = repository.searchListings(
-        maxMonthlyRentUsd: 350,
+        maxMonthlyRentUzs: 3500000,
         onlyAvailable: true,
       );
       expect(affordableAvailable, isNotEmpty);
       expect(
         affordableAvailable.every(
-          (item) => item.monthlyRentUsd <= 350 && item.isAvailable,
+          (item) => item.monthlyRentUzs <= 3500000 && item.isAvailable,
         ),
         isTrue,
       );
@@ -143,7 +143,7 @@ void main() {
       final byQuery = repository.searchListings(query: 'chilonzor');
       expect(byQuery.length, 1);
       expect(byQuery.first.id, 'listing_3');
-      
+
       final girlsOnly = repository.searchListings(
         forWhom: ListingAudience.girls,
       );
